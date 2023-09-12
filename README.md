@@ -19,4 +19,6 @@ Key Features:
 - Medication History: Keep a detailed record of your medication history, making it easy to share with healthcare providers. (maybe)
 - Healthcare Provider Integration: Seamlessly connect with your healthcare provider to receive prescriptions and updates.
 
+# Use Case Diagram
+
 ![Screenshot of Use Case Diagram](RxSelect_UseCase_Diagram.jpeg)
