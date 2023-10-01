@@ -1,62 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>
-        RxSelect Login
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/css/login-style.css" />
+    <title>RxSelect</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/loginstyle.css">
 </head>
-<body style="display: flex; justify-content:center ; align-items: center;height: 100vh;overflow: hidden;">
-<div class="form-wrap">
-    <div class="tabs">
-        <h3 class="signup-tab"><a class="active" href="#signup-tab-content" style="border-top-left-radius: 7px;">Sign Up</a></h3>
-        <h3 class="login-tab"><a href="#login-tab-content" style="border-top-right-radius: 7px;">Login</a></h3>
-    </div>
-    <div class="tabs-content">
-        <div id="signup-tab-content" class="active">
-            <form class="signup-form" action="" method="post">
-                <input type="email" class="input" id="user_email" autocomplete="off" placeholder="Email">
-                <input type="text" class="input" id="user_name" autocomplete="off" placeholder="Username">
-                <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
-                <input type="submit" class="button" value="Sign Up">
-            </form>
-            <div class="help">
-                <p>By signing up, you agree to our</p>
-                <p><a href="index.html">Terms of service</a></p>
-            </div>
-        </div>
-        <div id="login-tab-content">
-            <form class="login-form" action="" method="post">
-                <input type="text" class="input" id="user_login" autocomplete="off" placeholder="Email or Username">
-                <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
-                <input type="checkbox" class="checkbox" id="remember_me">
-                <label for="remember_me">Remember me</label>
-                <input type="submit" class="button" value="Login">
-            </form>
-            <div class="help">
-                <p><a href="index.html">Forget your password?</a></p>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center py-5">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                    <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                    <label for="reg-log"></label>
+                    <div class="card-3d-wrap mx-auto">
+                        <div class="card-3d-wrapper">
+                            <div class="card-front">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-4 pb-3">Log In</h4>
+                                        <div class="form-group">
+                                            <input type="email" class="form-style" placeholder="Email">
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="password" class="form-style" placeholder="Password">
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <a href="admin.html" class="btn mt-4">Login</a>
+                                        <p class="mb-0 mt-4 text-center"><a href="index.html" class="link">Forgot your password?</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-3 pb-3">Sign Up</h4>
+                                        <div class="form-group">
+                                            <input type="text" class="form-style" placeholder="Full Name">
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="tel" class="form-style" placeholder="Phone Number">
+                                            <i class="input-icon uil uil-phone"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="email" class="form-style" placeholder="Email">
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="password" class="form-style" placeholder="Password">
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <a href="index.html" class="btn mt-4">Register</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/js/main.js"></script>
-<script>
-    jQuery(document).ready(function($) {
-        tab = $('.tabs h3 a');
-
-        tab.on('click', function(event) {
-            event.preventDefault();
-            tab.removeClass('active');
-            $(this).addClass('active');
-
-            tab_content = $(this).attr('href');
-            $('div[id$="tab-content"]').removeClass('active');
-            $(tab_content).addClass('active');
-        });
-    });
-</script>
 </body>
 </html>
