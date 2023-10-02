@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+html {
+    overflow: scroll;
+}
+
+.container {
+    overflow: scroll;
+}
+
 .titlebar {
     background: #0D6EFD;
 }
