@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.titlebar {
+    background: #0D6EFD;
+}
+.titlebar_text {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 35px;
+    color: #ffffff;
+}
+.instruct {
+    background: #F8F9FA;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.instruct_text {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: x-large;
+    color: #000000;
+}
+.divider {
+    width: 80%; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+.col-sm {
+    text-align: center;
+}
+.treat_notes {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RxSelect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="doc-view.css">
+    <!-- Bootstrap 5 links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- DataTable links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Sidebar styling  and js from https://getbootstrap.com/docs/5.0/examples/sidebars/ -->
+    <link href="sidebars.css" rel="stylesheet">
+    <script defer src="sidebars.js"></script>
+    <!-- Initialize table -->
+    <script defer src="table-scripts.js"></script>
+</head>
+
+<style>
+    /* Show pointer when hovering over clickable row in table */
+    tr[data-href] {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="titlebar">
+        <div class="titlebar_text">
+            <strong>RxSelect</strong>
+        </div>
+    </div>
+    <main>
+        <!-- Sidebar styling  and js from https://getbootstrap.com/docs/5.0/examples/sidebars/ -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="images/pill-svgrepo-com.svg" width="40" height="32" class="bi me-2">
+                <span class="fs-4">Navigation</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                <a href="#" class="nav-link link-dark">
+                    <img src="images/home-svgrepo-com.svg" alt="" width="20" height="20" class="rounded-circle me-2">
+                    Home
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="patient-list.html" class="nav-link link-dark">
+                    <img src="images/table-svgrepo-com.svg" alt="" width="20" height="20" class="rounded-circle me-2">
+                    Patient List
+                </a>
+                </li>
+                <li>
+                <a href="rx-search.html" class="nav-link active" aria-current="page">
+                    <img src="images/search-svgrepo-com.svg" alt="" width="20" height="20" class="rounded-circle me-2">
+                    Rx Search
+                </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="images/user-circle-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>Dr. Jones</strong>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item" href="#">Patient John Smith</a></li>
+                <li><a class="dropdown-item" href="#">Admin Jane Doe</a></li>
+                <li><a class="dropdown-item" href="#">Dr. Jones</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Patient Table Content -->
+        <div class="container" style="padding-top:15px;">
+            <div class="instruct">
+                <div class="instruct_text">
+                    <strong>Search by Symptom or Rx Name:</strong>
+                </div>
+            </div>
+            <input type="text" size="100" id="search-term" name="search-term" placeholder="Search by symptoms like 'headache' or Rx name like 'amoxicillin'">
+            <a href="search-results.html" type="button" class="btn btn-primary btn-sm btn-block">Search</a>
+            <hr>
+            <div class="instruct_text">
+                <strong>Results: </strong>
+            </div>
+
+            <table id="data" class="table table-striped" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Rx Name</th>
+                        <th>Usage</th>
+                        <th>Dosage and Administration</th>
+                        <th>Adverse Reactions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Rx Name</th>
+                        <th>Usage</th>
+                        <th>Dosage and Administration</th>
+                        <th>Adverse Reactions</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>
