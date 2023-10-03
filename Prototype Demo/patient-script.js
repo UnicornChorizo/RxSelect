@@ -156,3 +156,63 @@ document.addEventListener("DOMContentLoaded", function () {
         displayBills();
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get a reference to the form element
+    const appointmentForm = document.querySelector("#request-appointment form");
+
+    // Get a reference to the popup and its content
+    const confirmationPopup = document.getElementById("confirmation-popup");
+    const popupContent = confirmationPopup.querySelector(".popup-content");
+
+    // Add a submit event listener to the form
+    appointmentForm.addEventListener("submit", function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Retrieve form data if needed
+        const formData = new FormData(appointmentForm);
+
+        // Display the popup with appointment details
+        const appointmentDetails = getAppointmentDetails(formData); // You can define this function to format appointment details
+        document.getElementById("appointment-details").textContent = appointmentDetails;
+
+        // Show the popup
+        confirmationPopup.style.display = "block";
+    });
+
+    // Close the popup when the close button is clicked
+    document.getElementById("close-popup").addEventListener("click", function () {
+        confirmationPopup.style.display = "none";
+    });
+});
+
+function getAppointmentDetails(formData) {
+    // You can format the appointment details as needed from the form data
+    const firstName = formData.get("firstName");
+    const lastName = formData.get("lastName");
+    const appointmentDate = formData.get("appointment-date");
+    const appointmentTime = formData.get("appointmentTime");
+
+    return `Name: ${firstName} ${lastName}, Date: ${appointmentDate}, Time: ${appointmentTime}`;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const showConfirmationButton = document.getElementById("show-confirmation");
+    const confirmationPopup = document.getElementById("confirmation-popup");
+    const closePopupButton = document.getElementById("close-popup");
+
+    showConfirmationButton.addEventListener("click", function () {
+        // Display the confirmation popup
+        confirmationPopup.style.display = "block";
+
+        // You can update the appointment details here before displaying them
+        const appointmentDetails = "Your appointment details go here";
+        document.getElementById("appointment-details").textContent = appointmentDetails;
+    });
+
+    closePopupButton.addEventListener("click", function () {
+        // Close the confirmation popup
+        confirmationPopup.style.display = "none";
+    });
+});
