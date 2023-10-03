@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display:inline-flex;
+    padding-top: 15px;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+form label, form input, form textarea, form select, form button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #007BFF;
+	border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Request Appointment Style */
+.appointment-form {
+    background-color: #fff;
+	border-radius: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* End of Request Appointment Style */
+
+/*Cards displaying on Homescreen */
+.card {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    transition: max-height 0.3s ease-in-out;
+}
+
+/* Button styles */
+.toggle-button {
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Initially hide content inside the card */
+.card .content {
+    display: none;
+    overflow: 0;
+    transition: max-height 0.3s ease-in-out;
+}
+
+/* Expanded card styles */
+.card.expanded .content {
+    display: block;
+}

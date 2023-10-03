@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Request Appointment</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<header>
+		<h1>Patient Portal</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="patient-portal.html">Patient Portal</a></li>
+			<li><a href="view-bills.html">View Bills</a></li>
+			<li><a href="see-prescriptions.html">See Prescriptions</a></li>
+		</ul>
+	</nav>
+	<main>
+		<section id="request-appointment">
+
+			<div class="appointment-form">
+				<h1>Doctor Appointment Request</h1>
+				<form action="#" method="post">
+					<div class="input-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" required>
+
+					<label for="phone">Phone Number</label>
+					<input type="tel" id="phone" name="phone" required>
+
+					<label for="appointment-date">Preferred Appointment Date</label>
+					<input type="date" id="appointment-date" name="appointment-date" required>
+
+					<label for="appointmentTime">Choose Time:</label>
+					<select id="appointmentTime" name="appointmentTime">
+						<!-- JavaScript will populate the time slots here -->
+					</select>
+
+					<label for="message">Message (Optional)</label>
+					<textarea id="message" name="message" rows="4"></textarea>
+
+					<button type="submit">Submit</button>
+				</form>
+			</div>
+
+			<div class="popup-overlay" id="confirmation-popup">
+				<div class="popup-content">
+					<h2>Appointment Confirmed</h2>
+					<p>Your appointment has been scheduled for:</p>
+					<p id="appointment-details"></p>
+					<button id="close-popup">Close</button>
+				</div>
+			</div>
+			
+		</section>
+	</main>
+	<script src="patient-script.js"></script>
+</body>
+
+</html>

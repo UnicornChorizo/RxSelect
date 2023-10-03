@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal - See Prescriptions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Patient Portal</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="patient-portal.html">Patient Portal</a></li>
+            <li><a href="request-appointment.html">Request Appointment</a></li>
+            <li><a href="view-bills.html">View Bills</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="medications">
+            <h2>See Prescriptions</h2>
+            <ul id="medication-list></ul>
+        </section>
+    </main>
+    <script src="patient-script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the target element where you want to display all prescriptions
+            const prescriptionList = document.getElementById("prescription-list");
+
+            // Call the displayAllPrescriptions function with the target element
+            displayAllPrescriptions(prescriptionList);
+        });
+    </script>
+</body>
+
+</html>

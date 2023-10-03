@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Patient Portal</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="request-appointment.html">Request Appointment</a></li>
+            <li><a href="view-bills.html">View Bills</a></li>
+            <li><a href="see-prescriptions.html">See Prescriptions</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="card" id="upcoming-visits">
+            <h2>Upcoming Visits</h2>
+            <button class="toggle-button">Toggle</button>
+            <div class="content">
+                <ul id="visit-list">
+                    <!-- Upcoming visits will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" id="medications">
+            <h2>Medications</h2>
+            <button class="toggle-button">Toggle</button>
+            <div class="content">
+                <ul id="medication-list">
+                    <!-- Medications will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" id="upcoming-bills">
+            <h2>Upcoming Bills</h2>
+            <button class="toggle-button">Toggle</button>
+            <div class="content">
+                <ul id="bill-list">
+                    <!-- Upcoming bills will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="patient-script.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the target element where you want to display selected prescriptions
+        const selectedPrescriptionsList = document.getElementById("selected-prescriptions-list");
+
+        // Call the displaySelectedPrescriptions function with the target element
+        displaySelectedPrescriptions(selectedPrescriptionsList);
+    });
+</script>
+</body>
+</html>
