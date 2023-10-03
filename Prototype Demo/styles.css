@@ -110,3 +110,14 @@ textarea {
 .card.expanded .content {
     display: block;
 }
+
+.titlebar {
+    background: #0D6EFD;
+}
+.titlebar_text {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 35px;
+    color: #ffffff;
+}
