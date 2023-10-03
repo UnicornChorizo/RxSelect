@@ -24,9 +24,30 @@
         #login-form.active, #register-form.active {
             display: block;
         }
+        .titlebar {
+        background-color: blue;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .titlebar a {
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+    }
+
+    .titlebar a:hover {
+        text-decoration: underline;
+    }
     </style>
 </head>
 <body>
+<div class="titlebar">
+    <div class="titlebar_text">
+        <a href="index.html"><strong>RxSelect</strong></a>
+    </div>
+</div>
 <div class="section">
     <div class="container">
         <div class="row full-height justify-content-center">
@@ -57,7 +78,7 @@
                                     </div>
 
                                 </form>
-                                <p class="mb-0 mt-4 text-center"><a href="index.html" class="link">Forgot your password?</a></p>
+                                <p class="mb-0 mt-4 text-center"><a href="patient-list.html" class="link">Forgot your password?</a></p>
                             </div>
                         </div>
                     </div>
