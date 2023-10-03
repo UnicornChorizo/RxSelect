@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>RxSelect</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="doc-view.css">
     <style>
         .btn-outline {
             border-color: blue;
@@ -24,12 +25,6 @@
         #login-form.active, #register-form.active {
             display: block;
         }
-        .titlebar {
-        background-color: blue;
-        color: white;
-        padding: 20px 0;
-        text-align: center;
-    }
 
     .titlebar a {
         color: white;
@@ -71,7 +66,7 @@
                                                         <input type="password" name="password" class="form-style" placeholder="Password" required>
                                                         <i class="input-icon uil uil-lock-alt"></i>
                                                     </div>
-                                                    <button type="submit" class="btn btn-outline mt-4">Login</button>
+                                                    <button type="button" onclick="loginUser()" class="btn btn-outline mt-4">Login</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -133,6 +128,12 @@
             toggleButton.textContent = 'Switch to Sign Up';
         }
     });
+</script>
+<script>
+function loginUser() {
+// Simulate a successful login and redirect to patient-list.html
+window.location.href = "patient-list.html";
+}
 </script>
 </body>
 </html>
