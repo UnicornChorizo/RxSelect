@@ -1,0 +1,10 @@
+.btn.patient-btn {
+    background-color: #0d6efd; /* This is Bootstrap's primary blue color */
+    color: white;
+    border: none;
+}
+
+.btn.patient-btn:hover {
+    background-color: #0056b3; /* Darkened version of Bootstrap's primary blue color */
+    color: white;
+}
