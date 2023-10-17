@@ -32,7 +32,7 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li>
-                        <a href="patient-portal.html" class="nav-link active" aria-current="page">
+                        <a href="patient-portal.html" class="nav-link link-dark">
                             <img src="images/home-svgrepo-com.svg" alt="" width="20" height="20"
                                 class="rounded-circle me-2">
                             Home
@@ -80,49 +80,42 @@
                     </ul>
                 </div>
             </div>
-
-        <div class="container" style="padding-top:15px;">
-            <div class="card" id="upcoming-visits">
-                <h2>Upcoming Visits</h2>
-                <button class="toggle-button">View</button>
-                <div class="content">
-                    <ul id="visit-list">
-                        <!-- Upcoming visits will be dynamically added here -->
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card" id="medications">
-                <h2>Medications</h2>
-                <button class="toggle-button">View</button>
-                <div class="content">
-                    <ul id="medication-list">
-                        <!-- Medications will be dynamically added here -->
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card" id="upcoming-bills">
-                <h2>Upcoming Bills</h2>
-                <button class="toggle-button">View</button>
-                <div class="content">
-                    <ul id="bill-list">
-                        <!-- Upcoming bills will be dynamically added here -->
-                    </ul>
-                </div>
-            </div>
         </div>
+        <body>
+            <div class="settings-container">
+                <h1>Settings</h1>
+                <div class="setting-option">
+                    <label for="changePassword">Change Password:</label>
+                    <input type="password" id="changePassword">
+                </div>
+                <div class="setting-option">
+                    <label for="changeName">Change Name:</label>
+                    <input type="text" id="changeName">
+                </div>
+                <div class="setting-option">
+                    <label for="changeGender">Change Gender:</label>
+                    <select id="changeGender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="setting-option">
+                    <label for="changeProfilePicture">Change Profile Picture:</label>
+                    <input type="file" id="changeProfilePicture">
+                </div>
+                <div class="setting-option">
+                    <label for="changeInsuranceInfo">Change Insurance Information:</label>
+                    <textarea id="changeInsuranceInfo"></textarea>
+                </div>
+                <button id="saveChanges">Save Changes</button>
+            </div>
+        </body>
     </main>
 </body>
 <script src="patient-script.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get the target element where you want to display selected prescriptions
-        const selectedPrescriptionsList = document.getElementById("selected-prescriptions-list");
 
-        // Call the displaySelectedPrescriptions function with the target element
-        displaySelectedPrescriptions(selectedPrescriptionsList);
-    });
 </script>
 </body>
 

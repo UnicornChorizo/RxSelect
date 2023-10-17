@@ -25,7 +25,7 @@
     <main>
 
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <a href="patient-portal.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <img src="images/pill-svgrepo-com.svg" width="40" height="32" class="bi me-2">
                 <span class="fs-4">Navigation</span>
             </a>
@@ -75,6 +75,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
+                    <li><a class="dropdown-item" href="patient-settings.html">Settings</a></li>
                     <li><a class="dropdown-item" href="login.html">Sign out</a></li>
                 </ul>
             </div>
@@ -86,7 +87,7 @@
 
                 <div class="appointment-form">
                     <h1>Doctor Appointment Request</h1>
-                    <form action="#" method="post">
+                    <form action="appointment-confirmation.html" method="post">
                         <div class="input-group">
                             <label for="firstName">First Name:</label>
                             <input type="text" id="firstName" name="firstName" required>
@@ -114,6 +115,8 @@
                         <label for="message">Message (Optional)</label>
                         <textarea id="message" name="message" rows="4"></textarea>
 
+                        <input type="hidden" id="clicksend-api-key" name="clicksend-api-key" value="1DC94838-491E-01D5-4984-1AE754E3D763">
+
                         <button type="submit">Submit</button>
                     </form>
                 </div>
@@ -123,7 +126,7 @@
                         <h2>Appointment Confirmed</h2>
                         <p>Your appointment has been scheduled for:</p>
                         <p id="appointment-details"></p>
-                        <button id="close-popup">Close</button>
+                        <a href="patient-portal.html" class="btn btn-primary">Return to Patient Portal</a>
                     </div>
                 </div>
             </section>

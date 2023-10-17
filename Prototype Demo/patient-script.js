@@ -197,22 +197,69 @@ function getAppointmentDetails(formData) {
     return `Name: ${firstName} ${lastName}, Date: ${appointmentDate}, Time: ${appointmentTime}`;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const showConfirmationButton = document.getElementById("show-confirmation");
-    const confirmationPopup = document.getElementById("confirmation-popup");
-    const closePopupButton = document.getElementById("close-popup");
+//Request Appointment Reminder
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent the default form submission
 
-    showConfirmationButton.addEventListener("click", function () {
-        // Display the confirmation popup
-        confirmationPopup.style.display = "block";
+    // Collect form data
+    const formData = new FormData(this);
 
-        // You can update the appointment details here before displaying them
-        const appointmentDetails = "Your appointment details go here";
-        document.getElementById("appointment-details").textContent = appointmentDetails;
+    // Convert form data to JSON
+    const jsonData = {};
+    formData.forEach((value, key) => {
+        jsonData[key] = value;
     });
 
-    closePopupButton.addEventListener("click", function () {
-        // Close the confirmation popup
-        confirmationPopup.style.display = "none";
-    });
+    // Extract the ClickSend API key
+    const clicksendApiKey = document.getElementById('clicksend-api-key').value;
+
+    // Make a POST request to the ClickSend API
+    fetch('https://rest.clicksend.com/v3/sms/send', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 1DC94838-491E-01D5-4984-1AE754E3D763', // Replace with your actual API key
+        },
+        body: JSON.stringify({
+            messages: [{
+                source: 'sdk',
+                body: `Appointment Request: ${jsonData.firstName} ${jsonData.lastName}, Email: ${jsonData.email}, Phone: ${jsonData.phone}, Date: ${jsonData['appointment-date']}, Time: ${jsonData.appointmentTime}`,
+                from: 'Your Sender ID',
+                to: 'Recipient Phone Number',
+            }],
+        }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from ClickSend here
+            console.log(data);
+            // Display a confirmation message to the user
+            showConfirmation();
+        })
+        .catch(error => {
+            // Handle errors here
+            console.error(error);
+        });
 });
+
+function showConfirmation() {
+    document.addEventListener("DOMContentLoaded", function () {
+        const showConfirmationButton = document.getElementById("show-confirmation");
+        const confirmationPopup = document.getElementById("confirmation-popup");
+        const closePopupButton = document.getElementById("close-popup");
+
+        showConfirmationButton.addEventListener("click", function () {
+            // Display the confirmation popup
+            confirmationPopup.style.display = "block";
+
+            // You can update the appointment details here before displaying them
+            const appointmentDetails = "Your appointment details go here";
+            document.getElementById("appointment-details").textContent = appointmentDetails;
+        });
+
+        closePopupButton.addEventListener("click", function () {
+            // Close the confirmation popup
+            confirmationPopup.style.display = "none";
+        });
+    });
+}
