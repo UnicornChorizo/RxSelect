@@ -21,4 +21,4 @@ Key Features:
 
 # Use Case Diagram
 
-![Screenshot of Use Case Diagram](RxSelect_UseCase_Diagram.jpeg)
+![Screenshot of Use Case Diagram](RxSelect_Use-Case.png)
