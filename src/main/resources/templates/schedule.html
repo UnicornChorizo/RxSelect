@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/doc-view.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link href="/css/sidebars.css" rel="stylesheet">
+    <script defer src="/js/sidebars.js"></script>
+    <script defer src="/js/table-scripts.js"></script>
+</head>
+<body>
+<div class="titlebar">
+    <div class="titlebar_text">
+        <strong>RxSelect</strong>
+    </div>
+</div>
+
+<div class="col-md-9">
+
+    <!-- Scheduling Section -->
+    <div id="schedule-section">
+        <h2>Schedule an Appointment</h2>
+        <form id="schedule-appointment-form" th:action="@{/admin/schedule}" method="post">
+            <!-- Patient Selector -->
+            <div class="mb-3">
+                <label for="patientSelector" class="form-label">Select Patient:</label>
+                <select class="form-select" id="patientSelector" name="patientId" required>
+                    <!-- Dynamically load patients -->
+                    <option value="" disabled selected>Select a patient</option>
+                    <option th:each="patient : ${patients}" th:value="${patient.patientId}"
+                            th:text="${patient.user.firstName + ' ' + patient.user.lastName}"></option>
+                </select>
+            </div>
+
+            <!-- Date Picker -->
+            <div class="mb-3">
+                <label for="appointmentDate" class="form-label">Date:</label>
+                <input type="date" class="form-control" id="appointmentDate" name="date" required>
+            </div>
+
+            <!-- Time Picker -->
+            <div class="mb-3">
+                <label for="appointmentTime" class="form-label">Time:</label>
+                <select id="appointmentTime" class="form-select" name="time" required>
+                    <option value="">Select Time</option>
+                    <option value="08:00">08:00 AM</option>
+                    <option value="09:00">09:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <!-- Add more time slots as needed -->
+                    <option value="16:00">04:00 PM</option>
+                    <option value="17:00">05:00 PM</option>
+                </select>
+
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+        </form>
+
+        <!-- Appointment Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="appointment : ${appointments}">
+                    <td th:text="${appointment.patient.user.firstName + ' ' + appointment.patient.user.lastName}"></td>
+                    <td th:text="${appointment.date}"></td>
+                    <td th:text="${appointment.time}"></td>
+                    <td>
+                        <form th:action="@{/admin/appointments/{id}(id=${appointment.id})}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" class="btn btn-danger">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>RxSelect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/doc-view.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link th:href="@{/sidebars.css}" rel="stylesheet">
+    <script defer th:src="@{/sidebars.js}"></script>
+    <script defer th:src="@{/table-scripts.js}"></script>
+</head>
+
+<style>
+    /* Show pointer when hovering over clickable row in table */
+    tr[data-href] {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+<div class="titlebar">
+    <div class="titlebar_text">
+        <strong>RxSelect</strong>
+    </div>
+</div>
+<main class="container-fluid">
+    <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <a href="/admin/dashboard"
+               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="/images/pill-svgrepo-com.svg" width="40" height="32" class="bi me-2" alt="">
+                <span class="fs-4">Navigation</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/admin/dashboard" class="nav-link active" aria-current="page">
+                        <img src="/images/table-svgrepo-com.svg" alt="" width="20" height="20"
+                             class="rounded-circle me-2">
+                        Patient List
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/schedule" class="nav-link link-dark">
+                        <img src="/images/calendar-week-svgrepo-com.svg" alt="" width="20" height="20"
+                             class="rounded-circle me-2">
+                        Schedule
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/bill" class="nav-link link-dark">
+                        <img src="/images/file-invoice-dollar-solid-svgrepo-com.svg" alt="" width="20" height="20"
+                             class="rounded-circle me-2">
+                        Billing
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                   id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/images/user-circle-svgrepo-com.svg" alt="" width="32" height="32"
+                         class="rounded-circle me-2">
+                    <strong>Jane Doe</strong>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    <li><a class="dropdown-item" href="">Admin Jane Doe</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="http://localhost:3000/RxSelect/">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <!-- Patient Table Content -->
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-12">
+                        <div class="instruct">
+                            <div class="instruct_text">
+                                <strong>Select a patient to view details:</strong>
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button id="add-patient-btn" class="btn btn-primary" onclick="showAddPatientModal()">Add
+                                Patient
+                            </button>
+                        </div>
+                        <div class="table-responsive ">
+                            <table id="patients-table" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Date of Birth</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="patient : ${patients}">
+                                    <td th:text="${patient.patientId}">Patient ID</td>
+                                    <td th:text="${patient.user.firstName + ' ' + patient.user.lastName}">Full Name</td>
+                                    <td th:text="${patient.sex}">Sex</td>
+                                    <td th:text="${#temporals.format(patient.dob, 'yyyy-MM-dd')}">Date of Birth</td>
+                                    <td>
+                                        <form th:action="@{'/admin/patients/' + ${patient.patientId}}" method="post">
+                                        <input type="hidden" name="_method" value="delete" />
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Patient Modal -->
+    <div class="modal" tabindex="-1" id="addPatientModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Patient</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form to add new patient details -->
+                    <form th:action="@{/admin/dashboard}" th:object="${patient}" method="post" id="addPatientForm">
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" th:field="*{user.firstName}"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" th:field="*{user.lastName}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" th:field="*{user.email}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sex" class="form-label">Sex</label>
+                            <select class="form-select" id="sex" th:field="*{sex}" required>
+                                <option value="">Select...</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" th:field="*{dob}" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Patient Modal -->
+        <div class="modal" tabindex="-1" id="editPatientModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Patient</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form to edit patient details -->
+                        <form id="editPatientForm">
+                            <div class="mb-3">
+                                <label for="patientName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="patientName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="patientSex" class="form-label">Sex</label>
+                                <select class="form-select" id="patientSex" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="patientDob" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="patientDob" required>
+                            </div>
+                            <input type="hidden" id="editPatientId">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                        <button type="button" class="btn btn-primary" onclick="confirmEdit()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    function showAddPatientModal() {
+        var addModal = new bootstrap.Modal(document.getElementById('addPatientModal'));
+        addModal.show();
+    }
+
+</script>
+</body>
+</html>
