@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    overflow: scroll;
+}
+
+.titlebar {
+    background: #0D6EFD;
+}
+
+.titlebar_text {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 35px;
+    color: #ffffff;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-flex;
+    padding-top: 15px;
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+form label,
+form input,
+form textarea,
+form select,
+form button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #007BFF;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Request Appointment Style */
+.appointment-form {
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: none; 
+    width: auto; 
+    margin: 20px 0; 
+    padding: 20px 15px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+    width: 100%; 
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* End of Request Appointment Style */
+
+/* Cards displaying on Homescreen */
+.card {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    transition: max-height 0.3s ease-in-out;
+}
+
+/* Button styles */
+.toggle-button {
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Initially hide content inside the card */
+.card .content {
+    display: none;
+    overflow: 0;
+    transition: max-height 0.3s ease-in-out;
+}
+/* End of Cards displaying on Homescreen */
+
+/* Expanded card styles */
+.card.expanded .content {
+    display: block;
+}
+
+/* Style for Appointment-Confirmation.php */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.confirmation-message {
+    text-align: center;
+}
+/* End of Appointment-Confirmation.php */
+
+
+/* Styles for the fixed navigation bar */
+.navbar-fixed {
+    position: fixed;
+    bottom: 60px; /* Adjust based on the title bar's height */
+    width: 280px; /* Adjust the width as needed */
+    background-color: white;
+    border-right: 1px solid #ccc;
+    height: calc(100% - 120px); /* Adjust the height as needed (subtract title bar and footer heights) */
+    overflow-y: auto; /* Add scroll if content exceeds the height */
+}
+
+/* Styles for the navigation bar links */
+.navbar-fixed a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Styles for the active link */
+.navbar-fixed .active {
+    background-color: #007bff;
+    color: white;
+}
+/* End of fixed navigation bar
+
+/* See-Prescriptions.php styling */
+.custom-card {
+    border: 2px solid #333;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: 100%;
+}
+/* End of See-Prescriptions.php styling */

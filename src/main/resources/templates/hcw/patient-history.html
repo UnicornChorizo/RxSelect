@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>RxSelect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/doc-view.css}">
+    <!-- Bootstrap 5 links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- DataTable links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Sidebar styling  and js from https://getbootstrap.com/docs/5.0/examples/sidebars/ -->
+    <link th:href="@{/sidebars.css}" rel="stylesheet">
+    <script defer th:src="@{/sidebars.js}"></script>
+    <!-- Initialize table -->
+    <script defer th:src="@{/table-scripts.js}"></script>
+</head>
+
+<style>
+    /* Show pointer when hovering over clickable row in table */
+    tr[data-href] {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="titlebar">
+        <div class="titlebar_text">
+            <strong>RxSelect</strong>
+        </div>
+    </div>
+    <main>
+        <!-- Sidebar styling  and js from https://getbootstrap.com/docs/5.0/examples/sidebars/ -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img th:src="@{/images/pill-svgrepo-com.svg}" width="40" height="32" class="bi me-2">
+                <span class="fs-4">Navigation</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                <a href="#" class="nav-link link-dark">
+                    <img th:src="@{/images/home-svgrepo-com.svg}" alt="" width="20" height="20" class="rounded-circle me-2">
+                    Home
+                </a>
+                </li>
+                <li class="nav-item">
+                <a th:href="@{/patient/all}" class="nav-link active" aria-current="page">
+                    <img th:src="@{/images/table-svgrepo-com.svg}" alt="" width="20" height="20" class="rounded-circle me-2">
+                    Patient List
+                </a>
+                </li>
+                <li>
+                <a th:href="@{/rxsearch/search}" class="nav-link link-dark">
+                    <img th:src="@{/images/search-svgrepo-com.svg}" alt="" width="20" height="20" class="rounded-circle me-2">
+                    Rx Search
+                </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img th:src="@{/images/user-circle-svgrepo-com.svg}" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>Dr. John Smith</strong>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    <li><a class="dropdown-item" href="http://localhost:3000/RxSelect/">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Patient Table Content -->
+        <div class="container" style="padding-top:15px;">
+                <div class="instruct">
+                    <div class="instruct_text">
+                        <strong th:text=" ${patient.first_name} + ' ' + ${patient.last_name} + ' Treatment History'"></strong>
+                    </div>
+                </div>
+            <table id="data" class="table table-striped" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Rx Name</th>
+                        <th>Treatment Notes</th>
+                        <th>Date Prescribed</th>
+                        <th>Complete?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="treatment : ${treatmentList}">
+                        <td> <a th:href="@{/history/patient_id={patient_id}/treatment_id={treatment_id}(patient_id=${patient.id}, treatment_id=${treatment.id})}" th:text="${treatment.rx_name}"></a> </td>
+                        <td th:text=" ${treatment.treatment_notes}"></td>
+                        <td th:text=" ${treatment.presc_date}"></td>
+                        <td th:text=" ${treatment.completed} ? 'Yes' : 'No'"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Rx Name</th>
+                        <th>Treatment Notes</th>
+                        <th>Date Prescribed</th>
+                        <th>Complete?</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="container" style="background:#F8F9FA; text-align: center; margin-top: 10px;">
+                <!-- Current Treatment Form -->
+                <form action="#" th:action="@{/history/update}" th:object="${currentTreatment}" method="post">
+                    <input hidden type="text" th:field="*{patient_id}" value="${currentTreatment.patient_id}">
+                    <input hidden type="text" th:field="*{id}" value="${currentTreatment.id}">
+                    <div class="instruct_text">
+                        <strong>Current Treatment:</strong><br>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                        <strong><u>Rx Name:</u></strong> <input type="text" th:field="*{rx_name}"  value="${currentTreatment.rx_name}">
+                        </div>
+                        <div class="col-sm">
+                        <strong><u>Date Prescribed:</u></strong> <input type="text" th:field="*{presc_date}" value="${currentTreatment.presc_date}">
+                        </div>
+                        <div class="col-sm">
+                        <strong><u>Complete?:</u></strong> <input type="checkbox" th:field="*{completed}" th:checked="${currentTreatment.completed}">
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div class="instruct_text">
+                        <strong>Treatment Notes:</strong>
+                    </div>
+                    <textarea id="treatment_notes" name="treatment_notes" th:field="*{treatment_notes}" rows="5" cols="100" th:text="${currentTreatment.treatment_notes}"></textarea>
+                    <div class="buttons" style="padding-bottom:10px;">
+                        <!-- Save Button -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="alert('Changes Saved!')">Save Changes to Current Rx</button>
+                        <!-- Add as New Button -->
+                        <button type="submit" class="btn btn-success btn-lg btn-block"
+                                onclick="return confirm('Save current treatment details as a new treatment?')"
+                                th:formaction="@{/history/add}">Add As New Rx</button>
+                        <!-- Discard Changes Button -->
+                        <button type="button" class="btn btn-secondary btn-lg btn-block">
+                            <a style="color:inherit; text-decoration: inherit;"
+                               th:href="@{/patient/all}"
+                               onclick="return confirm('Are you sure you want to discard changes?')">
+                                Discard Changes and Return to Patient List
+                            </a>
+                        </button>
+                    </div>
+                </form>
+                <hr class="divider">
+                <!-- Delete Current Button -->
+                <form action="#" th:action="@{/history/delete}" th:object="${currentTreatment}" method="post">
+                    <input hidden type="text" th:field="*{id}" value="${currentTreatment.id}">
+                    <input hidden type="text" th:field="*{patient_id}" value="${currentTreatment.patient_id}">
+                        <button type="submit" class="btn btn-danger btn-lg btn-block"
+                                onclick="return confirm('Really Delete Current Treatment?')">
+                                Delete Current Rx
+                        </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>

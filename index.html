@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rxselect_css/rxselect.css">
+    <title>RxSelect</title>
+    <script defer src="rxselect_js/rxselect.js"></script>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Your custom styles here */
+        .navbar-custom {
+            background-color: #007BFF; /* Bootstrap's primary blue color */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 24px;
+            flex-grow: 1; /* Makes the brand grow to take available space */
+            text-align: center; /* Centers the text */
+        }
+        /* Full-page slideshow container */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+        }
+
+        /* Slides */
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: top 1s ease-in-out; /* Slide transition effect */
+        }
+
+        /* Set initial position for the first slide */
+        .mySlides:first-child {
+            top: 100%;
+        }
+
+        /* Login card container */
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Caption text */
+        .text {
+            color: #fff;
+            font-size: 20px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* The dots/bullets */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">RxSelect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about_us/about-us.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="careers/careers.html">Careers</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="slideshow-container">
+        <!-- Slides -->
+        <div class="mySlides">
+            <img src="images/doctor-reaches-towards-shelf.jpg" alt="Slide 1" style="width:100%; height:100%;">
+        </div>
+        
+        <div class="mySlides">
+            <img src="images/nurse-pushing-wheelchair.jpg" alt="Slide 2" style="width:100%; height:100%;">
+        </div>
+        
+        <div class="mySlides">
+            <img src="images/surgeon-concentrates-on-work.jpg" alt="Slide 3" style="width:100%; height:100%;">
+        </div>
+
+        <div class="mySlides">
+            <img src="images/surgeon-wearing-face-mask.jpg" alt="Slide 4" style="width:100%; height:100%;">
+        </div>
+        
+        <!-- Dots/bullets -->
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <!-- Login card container -->
+    <div class="login-container">
+        <div class="rounded-box">
+            <h2>Login</h2>
+            <p>Enter your credentials to access your account.</p>
+            <a href="login/login.html" class="btn btn-primary">Login</a>
+        </div>
+    </div>
+
+    <footer class="mt-5 p-4 text-center bg-light">
+        <p>&copy; 2023 Healthcare Portal</p>
+    </footer>
+
+    <!-- JavaScript for the slideshow -->
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.top = "0"; // Move slide to the top
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(hideSlide, 5000); // Hide slide after 5 seconds
+        }
+
+        function hideSlide() {
+            var slides = document.getElementsByClassName("mySlides");
+            slides[slideIndex - 1].style.top = "100%"; // Move slide back down
+            dots[slideIndex - 1].className = dots[slideIndex - 1].className.replace(" active", "");
+            setTimeout(showSlides, 1000); // Show next slide after 1 second
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
