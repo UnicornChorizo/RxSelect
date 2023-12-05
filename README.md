@@ -22,3 +22,6 @@ Key Features:
 # Use Case Diagram
 
 ![Screenshot of Use Case Diagram](RxSelect_Use-Case.png)
+
+# Note For SQL Imports
+There must be two databases, "code-review" and "patientdb", containing the tables and dummy data found in code-review.sql and patientdb.sql.
