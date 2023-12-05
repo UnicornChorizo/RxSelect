@@ -25,3 +25,6 @@ Key Features:
 
 # Note For SQL Imports
 There must be two databases, "code-review" and "patientdb", containing the tables and dummy data found in code-review.sql and patientdb.sql.
+
+# Note for Execution 
+The starting point for the program will be at http://localhost:3000/RxSelect/
